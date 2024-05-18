@@ -17,6 +17,6 @@ public class ItemController {
 
     @GetMapping("/search/{query}")
     public List<Item> searchByName(@PathVariable String query) {
-        return itemRepository.findAllByNameContainingIgnoringCase(query);
+        return itemRepository.findByNameContainingIgnoreCase(query);
     }
 }
