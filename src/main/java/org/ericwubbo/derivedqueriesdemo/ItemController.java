@@ -1,12 +1,9 @@
 package org.ericwubbo.derivedqueriesdemo;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import java.math.BigDecimal;
-import java.util.Optional;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,5 +13,10 @@ public class ItemController {
     @GetMapping
     public Iterable<Item> getAll() {
         return itemRepository.findAll();
+    }
+
+    @GetMapping("/search/{query}")
+    public List<Item> searchByName(@PathVariable String query) {
+        return itemRepository.findAllByNameContainingIgnoringCase(query);
     }
 }
